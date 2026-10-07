@@ -50,20 +50,9 @@ Each step uses the same developing authentication incident while introducing a 
 
 LLM Used: ChatGPT
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr>
-<th>ChatGPT was used as the Large Language Model (LLM) for this lab. The SOC analyst supplied validated investigation context and structured prompts to ChatGPT for AI-assisted analysis. ChatGPT generated investigative assistance such as event analysis, evidence correlation, investigation planning, query generation, MITRE ATT&amp;CK mapping, alert classification, and incident documentation. All LLM-generated output was reviewed and validated by the SOC analyst before being accepted as part of the investigation.<br />
-<br />
-In this skills in real scenario, Authentication Events coming from the organization's actual security systems—such as Microsoft Entra ID sign-in logs, Windows Event Logs, Active Directory, VPN logs, EDR/XDR, Microsoft Sentinel, Splunk, or another SIEM. An alert in the SIEM might lead the SOC analyst to retrieve the relevant authentication events. LLM Prompt coming from the SOC analyst. After examining the alert and available evidence, the analyst decides what assistance is needed and writes instructions for the LLM. For example: analyze these authentication events, identify suspicious patterns, and recommend additional evidence to investigate.</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+ChatGPT was used as the Large Language Model (LLM) for this lab. The SOC analyst supplied validated investigation context and structured prompts to ChatGPT for AI-assisted analysis. ChatGPT generated investigative assistance such as event analysis, evidence correlation, investigation planning, query generation, MITRE ATT&amp;CK mapping, alert classification, and incident documentation. All LLM-generated output was reviewed and validated by the SOC analyst before being accepted as part of the investigation.
+
+In this skills in real scenario, Authentication Events coming from the organization's actual security systems—such as Microsoft Entra ID sign-in logs, Windows Event Logs, Active Directory, VPN logs, EDR/XDR, Microsoft Sentinel, Splunk, or another SIEM. An alert in the SIEM might lead the SOC analyst to retrieve the relevant authentication events. LLM Prompt coming from the SOC analyst. After examining the alert and available evidence, the analyst decides what assistance is needed and writes instructions for the LLM. For example: analyze these authentication events, identify suspicious patterns, and recommend additional evidence to investigate.
 
 Step 1 — LLM-Assisted Initial Alert Triage
 
@@ -80,9 +69,9 @@ Severity: Medium\
 Account: j.smith\
 Source: Authentication logs
 
-### Based on Authentication Events and LLM Prompt I generated from my previous lab.\
-Real Source: Authentication events were obtained from labs such as Microsoft Entra ID Sign-in Logs ingested into Microsoft Sentinel for SOC investigation. And I summited them to LLM (Large Language Model) Which I used ChatGPT for this lab.\
-\
+Based on Authentication Events and LLM Prompt I generated from my previous lab.\
+Real Source: Authentication events were obtained from labs such as Microsoft Entra ID Sign-in Logs ingested into Microsoft Sentinel for SOC investigation. And I summited them to LLM (Large Language Model) Which I used ChatGPT for this lab.
+
 LLM Analysis
 
 The LLM identified eight failed authentication attempts against j.smith, followed by one successful authentication. All nine events originated from 198.51.100.74.
@@ -95,8 +84,8 @@ The observed pattern was:
 
 Repeated password failures followed by successful authentication can be consistent with password guessing or brute-force behavior. The available evidence does not establish malicious activity because legitimate password-entry mistakes could produce a similar sequence.
 
-### Additional investigation should include authentication history, MFA results, device information, source-IP activity against other accounts, post-authentication activity, endpoint alerts, and relevant threat-intelligence information.\
-\
+Additional investigation should include authentication history, MFA results, device information, source-IP activity against other accounts, post-authentication activity, endpoint alerts, and relevant threat-intelligence information.
+
 Analyst Validation
 
 The LLM correctly summarized the authentication sequence and avoided presenting a possible brute-force attack as a confirmed compromise.
@@ -105,7 +94,7 @@ The source address 198.51.100.74 belongs to the reserved TEST-NET-2 (198.51.1
 
 Any LLM claim identifying the address as a known malicious attacker would therefore represent an unsupported or fabricated conclusion.
 
-### SOC Learning Point
+SOC Learning Point
 
 LLM-generated analysis provides investigative assistance rather than authoritative security evidence.
 
@@ -151,16 +140,16 @@ Analyze the provided authentication events.
 \
 So, I prepared these two primary inputs for this exercise: simulated authentication telemetry based on previous authentication labs and a structured LLM prompt for Tier-1 SOC alert triage.
 
-## Step 2 — LLM-Assisted Evidence Extraction and Correlation
+Step 2 — LLM-Assisted Evidence Extraction and Correlation
 
-### Objective
+Objective
 
 I use an LLM to extract important security evidence from multiple authentication events and correlate activity across accounts, source IP addresses, timestamps, and authentication results.
 
-### Additional Authentication Evidence
+Additional Authentication Evidence
 
-The investigation produced additional authentication events:\
-\
+The investigation produced additional authentication events:
+
 2026-09-17 20:40:51 \| a.lee \| 198.51.100.74 \| FAILED \| Invalid password
 
 2026-09-17 20:41:03 \| j.smith \| 198.51.100.74 \| FAILED \| Invalid password
@@ -187,24 +176,24 @@ The investigation produced additional authentication events:\
 
 2026-09-17 20:44:02 \| a.lee \| 198.51.100.74 \| FAILED \| Invalid password
 
-2026-09-17 20:44:31 \| j.smith \| 203.0.113.25 \| SUCCESS \| MFA successful\
-\
-LLM Prompt\
-\
-Act as an AI assistant supporting a Tier-1 SOC investigation.\
-Analyze and correlate the provided authentication events.\
-1. Extract all user accounts and source IP addresses.\
-2. Count failed and successful authentications for each account.\
-3. Identify accounts targeted by the same source IP.\
-4. Identify authentication events occurring close together in time.\
-5. Identify behavioral patterns that warrant further investigation.\
+2026-09-17 20:44:31 \| j.smith \| 203.0.113.25 \| SUCCESS \| MFA successful
+
+LLM Prompt
+
+Act as an AI assistant supporting a Tier-1 SOC investigation.
+Analyze and correlate the provided authentication events.
+1. Extract all user accounts and source IP addresses.
+2. Count failed and successful authentications for each account.
+3. Identify accounts targeted by the same source IP.
+4. Identify authentication events occurring close together in time.
+5. Identify behavioral patterns that warrant further investigation.
 6. Compare the evidence with the earlier pattern of repeated failures followed by success.\
-7. Clearly separate observed evidence from possible interpretations.\
-8. Do not invent geolocation, reputation, ownership, device, or threat-intelligence information that is not present in the logs.\
+7. Clearly separate observed evidence from possible interpretations.
+8. Do not invent geolocation, reputation, ownership, device, or threat-intelligence information that is not present in the logs.
 9. Do not make a final malicious/benign classification.
 
-I submitted both to LLM (ChatGPT).\
-\
+I submitted both to LLM (ChatGPT).
+
 LLM Correlation Analysis
 -----------------------------------
 
@@ -217,14 +206,12 @@ The supplied authentication telemetry contains four user accounts and two sou
 | m.garcia | 1      | 0          | 198.51.100.74               |
 | r.patel  | 1      | 0          | 198.51.100.74               |
 
-### Evidence Correlation
+Evidence Correlation
 
 Source IP 198.51.100.74 generated failed authentication attempts against four different accounts: (Image 1)
 
-### \
-\
 A second source IP, 203.0.113.25, later produced a successful MFA authentication for j.smith\
-\
+
 Observed Evidence
 
 The following findings are directly supported by the telemetry:
@@ -241,7 +228,7 @@ j.smith subsequently completed successful MFA authentication from 203.0.113.25
 
 The entire displayed event sequence occurred within approximately four minutes.
 
-### Possible Interpretations
+Possible Interpretations
 
 The activity from 198.51.100.74 could resemble password-spraying or credential-guessing behavior because one source address attempted authentication against several accounts.
 
@@ -249,7 +236,7 @@ However, the available telemetry does not establish:
 
 IP reputation, geographic location, attacker identity, device identity, account compromise, credential theft, or malicious intent.
 
-### The later successful MFA event also does not prove that the earlier successful authentication was malicious or legitimate.\
+The later successful MFA event also does not prove that the earlier successful authentication was malicious or legitimate.
 \
 Analyst Validation
 
@@ -269,15 +256,15 @@ Individual events → shared indicators → relationships between accounts → b
 
 The LLM accelerated evidence organization, while the underlying authentication telemetry remained the authoritative evidence source.
 
-## Step 3 — LLM-Assisted Investigation Planning
+Step 3 — LLM-Assisted Investigation Planning
 
-### Objective
+Objective
 
 I use an LLM to create a prioritized SOC investigation plan based on the evidence identified during Steps 1 and 2.
 
 The goal is not to ask the LLM for a verdict. The goal is to determine which evidence should be examined next and why.
 
-### Current Investigation Context
+Current Investigation Context
 
 The following findings were established during the previous steps:
 
@@ -303,12 +290,10 @@ Current status:
 
 Suspicious authentication behavior requiring further investigation.
 
-No confirmed account compromise.\
-\
-\
-\
-LLM Prompt\
-\
+No confirmed account compromise.
+
+LLM Prompt
+
 Act as an AI assistant supporting a Tier-1 SOC investigation.
 
 Create a prioritized investigation plan for the authentication activity.
@@ -351,7 +336,7 @@ Do not assume information that is not present in the evidence.
 
 Do not invent IP reputation, geolocation, device information, or threat-intelligence results.
 
-### Do not make a final malicious or benign classification.\
+Do not make a final malicious or benign classification.
 \
 I Submit the investigation context together with the LLM Prompt.\
 \
@@ -371,7 +356,7 @@ In contrast:\
 \
 Check available threat-intelligence sources for information associated with 198.51.100.74.
 
-### would represent an appropriate investigation recommendation, rather than an unsupported factual claim.\
+would represent an appropriate investigation recommendation, rather than an unsupported factual claim.\
 \
 SOC Learning Point
 
@@ -379,14 +364,8 @@ The LLM is being used as an investigation-planning assistant, not as the decisi
 \
 (Images 2 and 3)
 
-### Prioritized Investigation Plan\
-\
-\
-\
-\
-\
-\
-\
+Prioritized Investigation Plan
+
 LLM Correlation Assessment
 
 The highest-priority investigation should focus on identity evidence because the original alert concerns authentication.
@@ -411,7 +390,7 @@ This pattern warrants examination for possible credential-guessing or password-
 
 The successful MFA authentication from 203.0.113.25 should also be correlated with authentication history, device information, session information, and MFA records. A successful MFA event alone does not establish whether the earlier authentication from 198.51.100.74 was legitimate or unauthorized.
 
-### Observed Evidence vs. Investigation Hypotheses
+Observed Evidence vs. Investigation Hypotheses
 
 Observed evidence: Multiple accounts received failed authentication attempts from the same source address. j.smithexperienced eight failures followed by a successful authentication. A later successful MFA authentication for j.smithoriginated from a second address.
 
@@ -419,7 +398,7 @@ Investigation hypotheses: Password spraying, brute-force activity, credential c
 
 No IP reputation, geographic location, device identity, malware activity, or account compromise can be established from the supplied telemetry.
 
-### Analyst Validation
+Analyst Validation
 
 The LLM-generated plan follows a reasonable investigation sequence:
 
@@ -427,7 +406,7 @@ Identity evidence → MFA → source/account correlation → device/session → 
 
 No unsupported threat-intelligence, geolocation, device, or attacker information was introduced.
 
-### SOC Learning Point
+SOC Learning Point
 
 Step 3 demonstrates that an LLM can help transform a suspicious alert into a structured investigation plan while maintaining separation between:
 
@@ -435,15 +414,15 @@ Known evidence → investigation hypothesis → evidence required for confirmati
 
 The final security determination remains dependent on validated telemetry rather than LLM-generated conclusions.
 
-## Step 4 — LLM-Assisted KQL/SPL Query Generation
+Step 4 — LLM-Assisted KQL/SPL Query Generation
 
-### Objective
+Objective
 
 I use an LLM to translate a natural-language SOC investigation question into KQL and SPL hunting queries.
 
 The generated queries support investigation of authentication failures originating from the same source IP and targeting multiple accounts.
 
-### Investigation Question
+Investigation Question
 
 The authentication evidence from Steps 1–3 established repeated failed authentication attempts from 198.51.100.74 against several accounts.
 
@@ -505,7 +484,7 @@ against at least 3 different accounts.
 
 8\. Explain the purpose of each query.
 
-### 9. Do not invent fields outside the supplied schemas.\
+9. Do not invent fields outside the supplied schemas.
 \
 I submitted the above prompt to LLM.\
 \
@@ -516,10 +495,8 @@ The LLM generated two queries resembling the following structure. (Images 4 and 
 KQL:\
 \
 
-### SPL:\
-\
-\
-\
+SPL:
+
 Analyst Validation
 
 LLM-generated queries require validation before production use.
@@ -532,7 +509,7 @@ The KQL example deserves particular attention. ResultType != "0" can serve as 
 
 The SPL example similarly assumes action="failure" because the simulated schema explicitly defines the action field. Production Splunk environments may use different field names or values.
 
-### SOC Learning Point
+SOC Learning Point
 
 Natural-language investigation questions can be converted into hunting queries with LLM assistance:
 
@@ -542,21 +519,18 @@ An LLM can accelerate query development, but generated queries should never be 
 
 ## LLM-Generated Hunting Queries
 
-### Microsoft Sentinel — KQL
+Microsoft Sentinel — KQL
 
-\
-\
 Purpose: The query searches unsuccessful authentication events, groups events by source IP address, counts failed attempts and distinct targeted accounts, records the first and last observed timestamps, and returns source addresses associated with at least five failures against at least three accounts. (Images 6 and 7)
 
-Splunk — SPL\
-\
-\
+Splunk — SPL
+
 Purpose: The query searches failed authentication events, groups activity by source IP address, counts authentication failures and distinct targeted accounts, records the first and last event timestamps, and prioritizes source addresses with the highest number of failed attempts.
 
-### LLM Output Review
+LLM Output Review
 
-### Both queries satisfy the supplied investigation requirements and use only fields defined in the prompt. One validation consideration applies to the KQL query: ResultType != "0" treats every nonzero result as an unsuccessful authentication. Production Microsoft Entra ID data can contain different result codes representing different authentication outcomes. Production deployment therefore requires validation of the desired ResultType values.\
-\
+Both queries satisfy the supplied investigation requirements and use only fields defined in the prompt. One validation consideration applies to the KQL query: ResultType != "0" treats every nonzero result as an unsuccessful authentication. Production Microsoft Entra ID data can contain different result codes representing different authentication outcomes. Production deployment therefore requires validation of the desired ResultType values.
+
 The SPL query assumes that failed authentication events are represented by: action="failure"\
 \
 SOC Learning Point
@@ -567,17 +541,16 @@ Natural-language investigation requirement → LLM → KQL/SPL → analyst valid
 
 LLM-generated queries accelerate threat hunting but require verification of field names, data semantics, filters, thresholds, and query logic before operational use.
 
-\
 Step 5 — LLM-Assisted MITRE ATT&CK Mapping
-------------------------------------------
 
-### Objective
+
+Objective
 
 I use an LLM to identify possible MITRE ATT&CK techniques associated with the observed authentication behavior.
 
 No ATT&CK technique is assigned before LLM analysis and analyst validation.
 
-### Scenario / Evidence
+Scenario / Evidence
 
 The investigation has established the following evidence:\
 \
@@ -655,7 +628,7 @@ compromise without supporting evidence.
 
 8\. Limit the analysis to techniques directly relevant to the supplied authentication evidence.
 
-### I submitted both Scenario / Evidence and prompt to LLM.\
+I submitted both Scenario / Evidence and prompt to LLM.
 \
 Analyst Task
 
@@ -669,17 +642,15 @@ Step 5 tests whether an LLM can assist with:
 
 Observed behavior → ATT&CK hypothesis → technique/ID → evidence justification → analyst validation
 
-## LLM-Assisted MITRE ATT&CK Mapping
+LLM-Assisted MITRE ATT&CK Mapping
 
-### LLM Analysis
+LLM Analysis
 
 The authentication evidence most directly maps to the Brute Force family within the MITRE ATT&CK Credential Access tactic. (Image 8)\
-\
-\
-\
+
 MITRE ATT&CK documents Brute Force as T1110 and separately identifies techniques involving valid accounts as T1078. 
 
-### Unsupported Mappings
+Unsupported Mappings
 
 The supplied evidence does not establish:
 
@@ -687,7 +658,7 @@ Credential dumping, MFA bypass, malware execution, persistence, privilege escala
 
 No corresponding ATT&CK mappings should be assigned based solely on the available authentication events.
 
-### Analyst Validation
+Analyst Validation
 
 The strongest evidence supports Password Guessing (T1110.001).
 
@@ -695,40 +666,40 @@ Password Spraying (T1110.003) remains a hypothesis because multiple accounts we
 
 Valid Accounts (T1078) should not be treated as confirmed because the successful authentication does not establish unauthorized use.
 
-## Step 6 — LLM-Assisted Detection of Unsupported Conclusions and Hallucinations
+Step 6 — LLM-Assisted Detection of Unsupported Conclusions and Hallucinations
 
-### Objective
+Objective
 
 I use an LLM to review an AI-generated SOC analysis and identify statements that are supported, unsupported, or require additional evidence.
 
 ### Scenario / Evidence\
 Validated Authentication Evidence
 
-### 
 
-### - 198.51.100.74 generated failed authentication attempts
 
-###  against four user accounts.
+- 198.51.100.74 generated failed authentication attempts
 
-### - j.smith experienced 8 failed authentications followed
+against four user accounts.
 
-###  by 1 successful authentication from 198.51.100.74.
+j.smith experienced 8 failed authentications followed
 
-### - j.smith later completed successful MFA authentication
+by 1 successful authentication from 198.51.100.74.
 
-###  from 203.0.113.25.
+- j.smith later completed successful MFA authentication
 
-### - No device information is available.
+from 203.0.113.25.
 
-### - No geolocation information is available.
+- No device information is available.
 
-### - No IP reputation results are available.
+- No geolocation information is available.
 
-### - No endpoint/EDR evidence is available.
+- No IP reputation results are available.
 
-### - No post-authentication activity has been examined.
+- No endpoint/EDR evidence is available.
 
-### - No confirmed account compromise exists.\
+- No post-authentication activity has been examined.
+
+- No confirmed account compromise exists.
 \
 AI-Generated SOC Analysis for Review\
 The authentication activity represents a confirmed brute-force\
@@ -738,62 +709,54 @@ The successful login indicates that the attacker obtained the correct password.\
 The attacker subsequently bypassed MFA and established access to the corporate environment.\
 The failed authentication attempts against a.lee, m.garcia, and r.patel may indicate password-spraying behavior.\
 Additional authentication and endpoint investigation is\
-recommended before determining the full scope of the activity.\
-\
+recommended before determining the full scope of the activity.
+
 LLM Prompt\
 \
 Act as an AI assistant supporting SOC quality assurance.
 
-### 
+Compare the AI-generated SOC analysis with the validated authentication evidence.
 
-### Compare the AI-generated SOC analysis with the validated authentication evidence.
+For every significant claim in the AI-generated analysis:
 
-### For every significant claim in the AI-generated analysis:
+1. Classify the claim as:
 
-### 1. Classify the claim as:
+- Supported by evidence
 
-###  - Supported by evidence
+- Possible but not established
 
-###  - Possible but not established
+- Unsupported / hallucinated
 
-###  - Unsupported / hallucinated
+2. Identify the specific evidence supporting or contradicting
+the claim.
 
-### 2. Identify the specific evidence supporting or contradicting
+3. Identify additional evidence required to validate claims
 
-###  the claim.
+that cannot currently be established.
 
-### 3. Identify additional evidence required to validate claims
+4. Flag any statement that presents an assumption as a fact.
 
-###  that cannot currently be established.
+5. Do not introduce new facts that are absent from the
 
-### 4. Flag any statement that presents an assumption as a fact.
+validated evidence.
 
-### 5. Do not introduce new facts that are absent from the
+6. Produce a corrected SOC analysis containing only conclusions
 
-###  validated evidence.
+ justified by the available evidence.
 
-### 6. Produce a corrected SOC analysis containing only conclusions
+I Submitted the Scenario / Evidence, AI-Generated SOC Analysis for Review, and LLM Prompt to the LLM.
 
- justified by the available evidence.\
-\
-I Submitted the Scenario / Evidence, AI-Generated SOC Analysis for Review, and LLM Prompt to the LLM.\
-\
 LLM Quality-Assurance Analysis
-------------------------------------------------------------------------------------------------------
 
-### Claim Evaluation\
-\
-\
-\
-\
-\
+Claim Evaluation
+
 Additional Evidence Required
 
 Confirmation of the unsupported or uncertain claims would require evidence such as authentication details, MFA records, IP reputation and geolocation data, device/session information, EDR telemetry, post-authentication activity, and account history.
 
-### Assumptions Presented as Facts
+Assumptions Presented as Facts
 
-The original AI analysis incorrectly converted several hypotheses into factual statements:\
+The original AI analysis incorrectly converted several hypotheses into factual statements:
 \
 "confirmed brute-force attack"
 
@@ -807,61 +770,58 @@ The original AI analysis incorrectly converted several hypotheses into factual s
 
 "attacker subsequently bypassed MFA"
 
-"established access to the corporate environment"\
-\
-None of those conclusions can be established from the supplied evidence\
-\
-Corrected SOC Analysis\
-\
+"established access to the corporate environment"
+
+None of those conclusions can be established from the supplied evidence
+
+
 Repeated failed authentication attempts were observed from 198.51.100.74 against four user accounts. (Images 9 and 10)
 
-### 
 
-### . The j.smith account experienced eight failed authentication
 
-### attempts followed by one successful authentication from the
+. The j.smith account experienced eight failed authentication
 
-### same source IP.
+attempts followed by one successful authentication from the
+same source IP.
 
-### . The pattern warrants investigation for possible credential-
+. The pattern warrants investigation for possible credential-
 
-### guessing activity. Authentication attempts involving multiple
+guessing activity. Authentication attempts involving multiple
 
-### accounts may also warrant investigation for possible
+accounts may also warrant investigation for possible
 
-### password-spraying behavior.
+password-spraying behavior.
 
-### . A later successful MFA authentication for j.smith originated
+. A later successful MFA authentication for j.smith originated
 
-### from 203.0.113.25.
+from 203.0.113.25.
 
-### . The available evidence does not establish malicious IP
+. The available evidence does not establish malicious IP
 
-### reputation, geographic origin, account compromise, credential
+reputation, geographic origin, account compromise, credential
 
-### theft, MFA bypass, attacker identity, or post-authentication
+theft, MFA bypass, attacker identity, or post-authentication
+access.
 
-### access.
+. Additional authentication, identity, session, and endpoint
 
-### . Additional authentication, identity, session, and endpoint
-
-### evidence is required before final classification.\
+evidence is required before final classification.
 \
 Analyst Validation
 
 The LLM successfully distinguished observed evidence from unsupported AI assertions. The original AI analysis demonstrated a major generative-AI risk in security operations: plausible language can make an unsupported conclusion appear authoritative.
 
-## Step 7 — LLM-Assisted Alert Classification
+Step 7 — LLM-Assisted Alert Classification
 
-### Objective
+Objective
 
 I use an LLM to evaluate accumulated investigation evidence and recommend an alert classification while clearly identifying uncertainty and missing evidence.
 
-### Scenario / Evidence:\
+Scenario / Evidence:
 \
 Authentication Investigation Evidence
 
-### Account: j.smith
+Account: j.smith
 
 ### Authentication activity:
 
@@ -954,7 +914,7 @@ Act as an AI assistant supporting Tier-1 SOC alert classification.
 I Submitted the Scenario / Evidence and LLM Prompt to the LLM.\
 \
 LLM Alert Classification Output
----------------------------------------------------------------
+
 
 ### Recommended Classification
 
@@ -1010,7 +970,7 @@ The LLM classification is consistent with the supplied evidence. Suspicious / R
 
 No unsupported attacker identity, credential theft, IP reputation, geolocation, MFA bypass, or endpoint-compromise claims were introduced.
 
-## Step 8 — LLM-Assisted Incident Documentation
+Step 8 — LLM-Assisted Incident Documentation
 
 ### Objective
 
@@ -1131,7 +1091,7 @@ Act as an AI assistant supporting Tier-1 SOC incident documentation.
 I submitted the Scenario / Evidence and LLM Prompt to the LLM.\
 \
 LLM-Generated Incident Documentation
----------------------------------------------------------------
+
 
 ### . Incident Title: Suspicious Authentication Activity — Multiple Failed Sign-ins Followed by Successful Authentication
 
@@ -1159,7 +1119,6 @@ r.patel
 | j.smith | 8 failures followed by 1 successful authentication |
 | Authentication pattern | Multiple accounts targeted within a short period |
 
-### 
 
 ### . Investigation Findings
 
@@ -1196,16 +1155,15 @@ Further investigation should examine authentication history, MFA records, device
 
 The LLM-generated incident documentation accurately reflects the supplied evidence and preserves uncertainty around credential guessing, password spraying, and account compromise.
 
-No unsupported geolocation, IP reputation, device, credential-theft, MFA-bypass, or endpoint-compromise claims were introduced.\
+No unsupported geolocation, IP reputation, device, credential-theft, MFA-bypass, or endpoint-compromise claims were introduced.
 \
 Step 9 — LLM-Assisted Tier-1 to Tier-2 Escalation/Handoff
---------------------------------------------------------------------------------------------------------------------------------
 
 ### Objective
 
 I use an LLM to convert validated Tier-1 investigation findings into a concise Tier-2 SOC escalation/handoff.
 
-### Scenario / Evidence:\
+### Scenario / Evidence:
 Tier-1 Investigation Summary
 
 ### Incident: Suspicious Authentication Activity
@@ -1216,8 +1174,8 @@ Tier-1 Investigation Summary
 
 ### Additional affected accounts:
 
-### a.lee\
-m.garcia\
+### a.lee
+m.garcia
 r.patel
 
 ### Authentication findings:
@@ -1248,8 +1206,6 @@ r.patel
 
 ### - Password Spraying — T1110.003
 
-### 
-
 ### Current classification:
 
 ### Suspicious / Requires Further Investigation
@@ -1276,9 +1232,9 @@ r.patel
 
 ### Available authentication evidence reviewed and correlated.
 
-### Additional investigation required.\
-\
-LLM Prompt:\
+### Additional investigation required.
+
+LLM Prompt:
 \
 Act as an AI assistant supporting a Tier-1 SOC analyst preparing
 
@@ -1338,7 +1294,7 @@ Act as an AI assistant supporting a Tier-1 SOC analyst preparing
 \
 I submitted the Scenario / Evidence and LLM Prompt to the LLM.
 
-## Step 9 — LLM-Generated Tier-1 to Tier-2 Escalation/Handoff
+Step 9 — LLM-Generated Tier-1 to Tier-2 Escalation/Handoff
 
 ### Escalation Reason
 
@@ -1367,7 +1323,7 @@ A later successful MFA authentication for j.smith originated from 203.0.113.2
 
 198.51.100.74 generated authentication activity against four accounts within a short period.
 
-### The combination of multiple targeted accounts and repeated failures followed by successful authentication against j.smithwarrants further investigation.\
+### The combination of multiple targeted accounts and repeated failures followed by successful authentication against j.smithwarrants further investigation.
 \
 Possible MITRE ATT&CK Mappings
 
@@ -1411,12 +1367,4 @@ The LLM-generated handoff accurately reflects the validated Tier-1 findings and 
 
 No confirmed compromise, attacker identity, malicious IP reputation, geolocation, credential theft, MFA bypass, or endpoint compromise was introduced without supporting evidence.
 
-### 
 
-### 
-
-### 
-
-### 
-
-### 
